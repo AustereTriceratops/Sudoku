@@ -1,4 +1,5 @@
 import {GRID_INDICES} from "./constants";
+import {coords_to_box_index} from "./utils"
 
 export class Puzzle {
     grid: number[][][];
@@ -97,11 +98,17 @@ export class Solver{
     }
 
     is_valid_solution(puzzle: Puzzle): boolean {
+        if (!this.are_cells_filled(puzzle))  return false;
+
         for (let i = 1; i < 10; i++) {
             if (!this.is_row_unique(puzzle, i)) return false;
             if (!this.is_column_unique(puzzle, i)) return false;
         }
 
         return true;
+    }
+
+    set_candidates_for_cell_in_box(cell_column: number, cell_row: number, puzzle: Puzzle) {
+        const cell = puzzle.grid[cell_column][cell_row];
     }
 }
