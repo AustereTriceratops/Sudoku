@@ -1,6 +1,7 @@
 import { BOX_INDICES } from "./constants";
-import { Puzzle, Verifier } from "./sudoku";
-import {cell_index_to_coords, coords_to_box_index, coords_to_cell_index} from "./utils"
+import { Puzzle } from "./puzzle";
+import { Verifier } from "./verifier";
+import { cell_index_to_coords, coords_to_box_index } from "./utils"
 
 export class Solver {
     puzzle: Puzzle;

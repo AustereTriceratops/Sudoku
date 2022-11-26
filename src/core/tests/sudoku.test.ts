@@ -1,5 +1,6 @@
-import {Puzzle, Verifier} from "./sudoku";
-import {IMPOSSIBLE_SOLUTION_1, IMPOSSIBLE_SOLUTION_2, VALID_SOLUTION} from "./constants";
+import { Verifier } from "../verifier";
+import { Puzzle } from "../puzzle";
+import {IMPOSSIBLE_SOLUTION_1, IMPOSSIBLE_SOLUTION_2, VALID_SOLUTION} from "../constants";
 
 
 describe("Puzzle", () => {

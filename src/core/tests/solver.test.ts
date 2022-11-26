@@ -1,5 +1,6 @@
-import {Verifier} from "./sudoku";
-import {Solver} from "./solver";
+import {Verifier} from "../verifier";
+import {Solver} from "../solver";
+import { coords_to_cell_index } from "../utils";
 
 describe("Solver", () => {
     let verifier: Verifier;
@@ -32,7 +33,7 @@ describe("Solver", () => {
         solver.puzzle.add_candidates(52, [7]);
         solver.puzzle.add_candidates(70, [2]);
 
-        solver.set_candidates_for_cell_in_column(7, 2, 16);
+        solver.set_candidates_for_cell_in_column(7, 2, coords_to_cell_index(7, 2));
         expect(solver.puzzle.grid[6][1]).toEqual([3, 4, 5, 8])
     })
 
@@ -45,7 +46,7 @@ describe("Solver", () => {
         solver.puzzle.add_candidates(11, [2]);
         solver.puzzle.add_candidates(20, [5]);
 
-        solver.set_candidates_for_cell_in_box(3, 2, 12);
+        solver.set_candidates_for_cell_in_box(3, 2, coords_to_cell_index(3, 2));
         expect(solver.puzzle.grid[2][1]).toEqual([1, 4, 8, 9])
     })
 
