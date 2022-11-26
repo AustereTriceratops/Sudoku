@@ -1,5 +1,5 @@
-import {Verifier} from "../verifier";
-import {Solver} from "../solver";
+import { Verifier } from "../verifier";
+import { Solver } from "../solver";
 import { coords_to_cell_index } from "../utils";
 
 describe("Solver", () => {

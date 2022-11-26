@@ -5,7 +5,7 @@ export function string_to_grid(game_str: string): number[][][] {
         grid.push([]);
 
         for (let j = 0; j < 9; j++) {
-            const cell_str = game_str[9 * i + j];
+            const cell_str = game_str[9 * j + i];
             const cell = parseInt(cell_str);
 
             if (cell_str === ".") {

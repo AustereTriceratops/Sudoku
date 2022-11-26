@@ -1,5 +1,5 @@
-import {string_to_grid, coords_to_box_index, coords_to_cell_index, cell_index_to_coords} from "./utils"
-import * as constants from "./constants";
+import {string_to_grid, coords_to_box_index, coords_to_cell_index, cell_index_to_coords} from "../utils"
+import * as constants from "../constants";
 
 describe("utils test", () => {
     test("can convert string to grid", () => {
