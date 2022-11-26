@@ -19,10 +19,23 @@ export function string_to_grid(game_str: string): number[][][] {
     return grid;
 }
 
-// x in range(1, 10) y in range(1, 10);
-export function coords_to_box_index(x: number, y: number): number {
-    const x_ = 1 + Math.floor((x - 1)/3);
-    const y_ = Math.floor((y - 1)/3);
+// columm_index and row_index are in [1, 10]
+export function coords_to_box_index(column_index: number, row_index: number): number {
+    const x = 1 + Math.floor((column_index - 1)/3);
+    const y = Math.floor((row_index - 1)/3);
 
-    return x_ + 3*y_;
+    return x + 3 * y;
+}
+
+// columm_index and row_index are in [1, 10]
+export function coords_to_cell_index(column_index: number, row_index: number): number {
+    return column_index + 9 * (row_index - 1);
+}
+
+// cell index in [1, 81]
+export function cell_index_to_coords(cell_index: number): number[] {
+    const column_index = ((cell_index - 1) % 9) + 1;
+    const row_index = ((cell_index - column_index) / 9) + 1;
+
+    return [column_index, row_index];
 }

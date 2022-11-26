@@ -1,4 +1,4 @@
-export const GRID_INDICES = {
+export const BOX_INDICES = {
     1: [0, 0],
     2: [3, 0],
     3: [6, 0],
@@ -8,6 +8,18 @@ export const GRID_INDICES = {
     7: [0, 6],
     8: [3, 6],
     9: [6, 6],
+}
+
+export const CANDIDATES_DICT = {
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+    6: [],
+    7: [],
+    8: [],
+    9: [],
 }
 
 export const EMPTY_GRID_STR = ".................................................................................";

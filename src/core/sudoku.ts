@@ -1,27 +1,56 @@
-import {GRID_INDICES} from "./constants";
-import {coords_to_box_index} from "./utils"
+import {BOX_INDICES, CANDIDATES_DICT} from "./constants";
+import {cell_index_to_coords} from "./utils"
 
 export class Puzzle {
     grid: number[][][];
+    candidates = {...CANDIDATES_DICT};
 
     constructor() {
         this.grid = [];
 
         for (let i = 0; i < 9; i++) {
             this.grid.push([]);
+            this.candidates[i + 1] = [];
 
             for (let j = 0; j < 9; j++) {
                 this.grid[i].push([]);
-
-                for (let k = 1; k < 10; k++) {
-                    this.grid[i][j].push(k);
-                }
             }
+
         }
+    }
+
+    remove_candidates(cell_index: number, candidates: number[]) {
+        const coords = cell_index_to_coords(cell_index);
+        const x = coords[0] - 1;
+        const y = coords[1] - 1;
+
+        candidates.forEach((candidate) => {
+            const ind = this.grid[x][y].indexOf(candidate);
+            if (ind > -1) {
+                this.grid[x][y].splice(ind, 1);
+
+                const index_in_cell_list = this.candidates[candidate].indexOf(cell_index);
+                this.candidates[candidate].splice(index_in_cell_list, 1);
+            }
+        })
+    }
+
+    add_candidates(cell_index: number, candidates: number[]) {
+        const coords = cell_index_to_coords(cell_index);
+        const x = coords[0] - 1;
+        const y = coords[1] - 1;
+
+        candidates.forEach((candidate) => {
+            if (!this.grid[x][y].includes(candidate)) {
+                this.grid[x][y].push(candidate);
+                this.candidates[candidate].push(cell_index)
+            }
+        })
     }
 }
 
-export class Solver{
+export class Verifier{
+    // ===== SOLUTION VERIFICATION =====
     are_cells_filled(puzzle: Puzzle): boolean {
         for (let i = 0; i < 9; i++) {
             for (let j = 0; j < 9; j++) {
@@ -35,7 +64,7 @@ export class Solver{
     }
 
     is_box_unique(puzzle: Puzzle, box_index: number): boolean {
-        const start_coords = GRID_INDICES[box_index];
+        const start_coords = BOX_INDICES[box_index];
         const entries: number[] = [];
 
         for (let i = 0; i < 3; i++) {
@@ -108,7 +137,61 @@ export class Solver{
         return true;
     }
 
-    set_candidates_for_cell_in_box(cell_column: number, cell_row: number, puzzle: Puzzle) {
-        const cell = puzzle.grid[cell_column][cell_row];
+    // ===== CANDIDATE CHECKING =====
+
+    can_box_be_filled(puzzle: Puzzle, box_index: number): boolean {
+        const start_coords = BOX_INDICES[box_index];
+        const entries: number[] = [];
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                const cell = puzzle.grid[start_coords[0] + i][start_coords[0] + j];
+                cell.forEach((candidate) => {
+                    if (!entries.includes(candidate)) entries.push(candidate)
+                })
+            }
+        }
+
+        if (entries.length === 9) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    can_row_be_filled(puzzle: Puzzle, row_index: number): boolean {
+        const entries: number[] = [];
+
+        for (let i = 0; i < 9; i++) {
+            const cell = puzzle.grid[i][row_index - 1];
+
+            cell.forEach((candidate) => {
+                if (!entries.includes(candidate)) entries.push(candidate)
+            })
+        }
+
+        if (entries.length === 9) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    can_column_be_filled(puzzle: Puzzle, column_index: number): boolean {
+        const entries: number[] = [];
+
+        for (let i = 0; i < 9; i++) {
+            const cell = puzzle.grid[column_index -1][i];
+
+            cell.forEach((candidate) => {
+                if (!entries.includes(candidate)) entries.push(candidate)
+            })
+        }
+
+        if (entries.length === 9) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
