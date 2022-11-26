@@ -1,5 +1,4 @@
 import './App.css';
-import * as sudoku from "./core/sudoku.ts";
 
 function App() {
   return (
