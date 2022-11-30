@@ -3,9 +3,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        kill suck destroy
-      </header>
+      <div className="canvas" id="canvas"></div>
     </div>
   );
 }
