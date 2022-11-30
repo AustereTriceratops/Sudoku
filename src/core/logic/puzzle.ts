@@ -1,4 +1,3 @@
-
 import {cell_index_to_coords, coords_to_cell_index, string_to_grid} from "./utils"
 
 export class Puzzle {

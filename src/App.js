@@ -1,9 +1,10 @@
 import './App.css';
+import {SudokuWrapper} from "./core/wrapper.tsx";
 
 function App() {
   return (
     <div className="App">
-      <div className="canvas" id="canvas"></div>
+      <SudokuWrapper></SudokuWrapper>
     </div>
   );
 }
