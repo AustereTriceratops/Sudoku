@@ -1,36 +1,33 @@
-import React from "react";
-import { Component } from "react";
+import React, { Component } from "react";
+import { CanvasWrapper } from "./canvasWrapper";
 import { Puzzle } from "./logic/puzzle";
 
 export class SudokuWrapper extends Component {
-    ref: HTMLElement;
-
-    state: {
-        puzzle: Puzzle;
+    state = {
+        puzzle: new Puzzle(),
+        highlightedCells: [],
     }
 
-    constructor(props: any) {
-        super(props);
-        //this.ref = createRef();
-        ;
-    }
+    // =========== STATE MANAGEMENT ===========
 
-    componentDidMount(): void {
-        this.setState({
-            puzzle: new Puzzle()
-        })
+    toggleHighlightedCell(cell: number) {
+        const {highlightedCells} = this.state;
+        const idx = highlightedCells.indexOf(cell);
+
+        if (idx === -1) {
+            highlightedCells.push(cell);
+        } else {
+            highlightedCells.splice(idx, 1);
+        }
     }
 
     render() {
-        console.log("we renderin");
         return (
-            <div>let's get this bread gamers</div>
+            <CanvasWrapper
+                puzzle={this.state.puzzle}
+                highlightedCells={this.state.highlightedCells}
+                toggleHighlightedCell={this.toggleHighlightedCell.bind(this)}
+            />
         )
     }
-}
-
-export const something = () => {
-    return (
-        <div>let's go</div>
-    )
 }

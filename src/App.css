@@ -1,5 +1,19 @@
 .App {
   background-color: #ddd;
   height: 100vh;
-  position:relative;
+  width: 100vw;
+  position: absolute;
+}
+
+.canvas-wrapper {
+  margin: 20px;
+  border-style: solid;
+  border-color: black;
+  width: 800px;
+  height: 800px;
+}
+
+canvas {
+  width: 800px;
+  height: 800px;
 }

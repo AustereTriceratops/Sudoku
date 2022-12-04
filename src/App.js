@@ -1,12 +1,14 @@
+import { Component } from 'react';
 import './App.css';
-import {SudokuWrapper} from "./core/wrapper.tsx";
+import {SudokuWrapper} from "./core/wrapper";
 
-function App() {
-  return (
-    <div className="App">
-      <SudokuWrapper></SudokuWrapper>
-    </div>
-  );
+class App extends Component{
+    render() {
+        return (
+            <SudokuWrapper/>
+        );
+    }
 }
+
 
 export default App;

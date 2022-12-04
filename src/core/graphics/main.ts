@@ -1,26 +1,34 @@
 import * as THREE from 'three';
-import { Puzzle } from '../logic/puzzle';
+import { BLACK, LIGHT_GREY } from './constants';
 
-type GameProps = {
-    puzzle: Puzzle;
-    highlightedCells: number[];
-}
-
-class Main {
+export class Main {
     scene: THREE.Scene;
     camera: THREE.OrthographicCamera;
     renderer: THREE.WebGLRenderer;
-    //props: GameProps;
-    props: any;
+    props;
     
-    constructor(props: any) {
+    constructor(props) {
         this.props = props;
 
-        this.scene = new THREE.Scene();
+        this.scene = new THREE.Scene({background: BLACK});
         this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1);
+
         this.renderer = new THREE.WebGLRenderer();
-        document.body.append(this.renderer.domElement);
+        this.renderer.setClearColor( 0xffffff );
+        this.props.canvas.appendChild(this.renderer.domElement);
+
+        this.subscribeEvents();
+        this.render();
     }
 
+    subscribeEvents() {
+        this.renderer.domElement.addEventListener("click", () => {
+            this.scene.background = LIGHT_GREY;
+            this.render();
+        })
+    }
 
+    render() {
+        this.renderer.render(this.scene, this.camera);
+    }
 }
