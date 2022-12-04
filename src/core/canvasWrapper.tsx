@@ -1,6 +1,9 @@
 import React, { Component, createRef, RefObject } from "react";
 import { Main } from "./graphics/main";
 
+// ========================================
+// ========== STATELESS COMPONENT =========
+// ========================================
 export class CanvasWrapper extends Component {
     props;
 

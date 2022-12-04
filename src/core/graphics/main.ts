@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { BLACK, LIGHT_GREY } from './constants';
+import { BLACK, LIGHT_GREY, WHITE } from './constants';
 
 export class Main {
     scene: THREE.Scene;
@@ -9,6 +9,7 @@ export class Main {
     
     constructor(props) {
         this.props = props;
+        this.props.setInstance(this);
 
         this.scene = new THREE.Scene({background: BLACK});
         this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1);
@@ -23,9 +24,17 @@ export class Main {
 
     subscribeEvents() {
         this.renderer.domElement.addEventListener("click", () => {
-            this.scene.background = LIGHT_GREY;
+            this.props.toggleHighlightedCell(0);
             this.render();
         })
+    }
+
+    highlight() {
+        this.scene.background = LIGHT_GREY;
+    }
+
+    unhighlight() {
+        this.scene.background = WHITE;
     }
 
     render() {
