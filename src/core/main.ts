@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { coords_to_cell_index } from '../logic/utils';
-import { BLACK, LIGHT_GREY, WHITE } from './constants';
+import { coords_to_cell_index } from './logic/utils';
+import { BLACK, LIGHT_GREY } from './constants';
 
 export class Main {
     props;

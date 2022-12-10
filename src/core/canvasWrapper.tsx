@@ -1,5 +1,5 @@
 import React, { Component, createRef, RefObject } from "react";
-import { Main } from "./graphics/main";
+import { Main } from "./main";
 
 // ========================================
 // ========== STATELESS COMPONENT =========

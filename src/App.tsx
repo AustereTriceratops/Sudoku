@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { CanvasWrapper } from './core/canvasWrapper';
-import { Main } from './core/graphics/main';
+import { Main } from './core/main';
 import { Puzzle } from './core/logic/puzzle';
 
 // ========================================
