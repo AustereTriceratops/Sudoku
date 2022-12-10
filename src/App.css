@@ -9,11 +9,11 @@
   margin: 20px;
   border-style: solid;
   border-color: black;
-  width: 800px;
-  height: 800px;
+  width: 900px;
+  height: 900px;
 }
 
 canvas {
-  width: 800px;
-  height: 800px;
+  width: 900px;
+  height: 900px;
 }

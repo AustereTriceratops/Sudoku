@@ -22,19 +22,21 @@ class App extends Component{
         this.instance = instance;
     }
 
-    toggleHighlightedCell(cell: number) {
+    toggleCellHighlight(cell: number) {
         const {highlightedCells} = this.state;
         const idx = highlightedCells.indexOf(cell);
 
         if (idx === -1) {
             highlightedCells.push(cell);
             this.setState({highlightedCells});
-            this.instance.highlight();
+            this.instance.highlight(cell);
         } else {
             highlightedCells.splice(idx, 1);
             this.setState({highlightedCells});
-            this.instance.unhighlight();
+            this.instance.unhighlight(cell);
         }
+
+        this.instance.render();
     }
     
     render() {
@@ -43,7 +45,7 @@ class App extends Component{
                 setInstance={(this.setInstance.bind(this))}
                 puzzle={this.state.puzzle}
                 highlightedCells={this.state.highlightedCells}
-                toggleHighlightedCell={this.toggleHighlightedCell.bind(this)}
+                toggleCellHighlight={this.toggleCellHighlight.bind(this)}
             />
         )
     }
